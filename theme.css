@@ -1,34 +1,272 @@
 body {
-	--radius-s: 0px;
-	--radius-m: 0px;
-	--radius-l: 0px;
-	--input-radius: 0px;
-	--tab-radius-active: 0px;
-	--checkbox-radius: 0px;
-	--toggle-radius: 0px;
-	--toggle-thumb-radius: 0px;
-	--slider-thumb-radius: 0px;
+  --tab-font-size: 0.82em;
+  --link-decoration: none;
+  --link-external-decoration: none;
+  /* Corner radius of table */
+  --radius-s: 6px;
+  --table-border-width: 1px;
+  --table-border-color: none;
+  --table-bg: var(--bg2);
+  --table-edge-cell-padding-first: 10px;
+  --table-edge-cell-padding-last: 10px;
+  --table-cell-padding: 10px 10px;
+  --h1-size: 1.618em;
+  --h2-size: 1.425em;
+  --h3-size: 1.255em;
+  --h4-size: 1.1em;
+  --h5-size: 1.1em;
+  --h6-size: 1.1em;
+  --h1-weight: 600;
+  --h2-weight: 600;
+  --h3-weight: 600;
+  --h4-weight: 500;
+  --h5-weight: 500;
+  --h6-weight: 500;
+  --h1-variant: normal;
+  --h2-variant: normal;
+  --h3-variant: normal;
+  --h4-variant: normal;
+  --h5-variant: normal;
+  --h6-variant: normal;
+  --h1-style: normal;
+  --h2-style: normal;
+  --h3-style: normal;
+  --h4-style: normal;
+  --h5-style: normal;
+  --h6-style: normal;
+  --code-size: 0.88em;
+  /* Readable line width */
+  --file-line-width: 640px !important;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap */
+  /* text-wrap: pretty; */
 }
 
-.workspace-tab-header.is-active::before, .workspace-tab-header.is-active::after {
-	display: none;
+/* Dark theme color variables */
+.theme-dark {
+  --bg1: #1a1b1c;
+  --bg2: #1e1f20;
+  --bg3: #222324;
+  --bg4: #262729;
+  --bg5: #292a2b;
+  --bg6: #2d2e2f;
+  --bg7: #333436;
+  --bg8: #363739;
+  --tx1: #cbcccf;
+  --tx2: #97989b;
+  --tx3: #6e7175;
+
+  --background-primary: var(--bg1);
+  --background-secondary: var(--bg2);
+  --background-primary-alt: var(--bg3);
+  --background-secondary-alt: var(--bg4);
+  --titlebar-background: var(--bg2);
+  --titlebar-background-focused: var(--bg2);
+
+  --ribbon-background: var(--background-secondary);
+  --interactive-normal: var(--bg7);
+  --icon-color-active: var(--tx1);
+  --icon-color-focused: var(--tx1);
+  --nav-item-color-active: var(--tx1);
+  --nav-item-color-hover: var(--tx1);
+  --nav-item-color-selected: var(--tx1);
+  --titlebar-text-color-focused: var(--tx1);
+  --vault-profile-color: var(--tx1);
+  --vault-profile-color-hover: var(--tx1);
+  --background-modifier-hover: var(--bg6);
+  --background-modifier-form-field: var(--background-secondary);
+  --background-modifier-form-field-highlighted: var(
+    --background-secondary-alt
+  );
+  --modal-sidebar-background: var(--background-secondary);
+  --settings-items-background: var(--background-secondary);
+  --background-modifier-message: var(--bg6);
+
+  --tab-background-active: var(--background-secondary);
+  --tab-container-background: var(--background-secondary);
+  --tab-text-color-focused-active: var(--tx1);
+  --tab-text-color-focused: var(--tx3);
+  --tab-text-color-focused-active-current: var(--tx1);
+  --tab-divider-color: var(--bg8);
+
+  --divider-color: var(--bg6);
+  --frame-divider-color: var(--divider-color);
+  --prompt-border-color: var(--divider-color);
+
+  --text-normal: var(--tx1);
+  --text-bold: var(--tx1);
+  --text-italic: var(--tx1);
+  --text-formatting: var(--tx3);
+  --title-color: var(--tx1);
+  --text-muted: var(--tx2);
+  --title-color-inactive: var(--tx2);
+  --nav-item-color: var(--tx2);
+  --icon-color: var(--tx2);
+  --icon-color-hover: var(--tx2);
+  --nav-collapse-icon-color: var(--tx2);
+  --nav-collapse-icon-color-collapsed: var(--tx2);
+  --text-blockquote: var(--tx2);
+  --text-faint: var(--tx3);
+  --text-formatting: var(--tx3);
+  --list-marker-color: var(--tx3);
+  --color-red: #e06e77;
+  --color-orange: #d29966;
+  --color-yellow: #d6ba70;
+  --color-green: #7fb370;
+  --color-cyan: #68b9b7;
+  --color-blue: #5f9cf3;
+  --color-purple: #a084e7;
+  --color-pink: #c282d6;
+  --code-background: var(--bg3);
+  --code-normal: #bbbcbd;
+  --code-operator: var(--code-punctuation);
+  --code-comment: #626467;
+  --code-function: var(--color-orange);
+  --code-important: var(--code-keyword);
+  --code-keyword: var(--color-red);
+  --code-property: var(--code-normal);
+  --code-punctuation: #5e6164;
+  --code-string: var(--color-green);
+  --code-tag: var(--code-keyword);
+  --code-value: var(--color-pink);
+  --indentation-guide-width: 2px;
+  --indentation-guide-width-active: 2px;
+  --blockquote-border-thickness: 2px;
 }
 
-svg * {
-	stroke-linecap: square;
-	stroke-linejoin: miter;
-	rx: 0;
-	ry: 0;
+/* Mobile dark theme color variables */
+.is-mobile.theme-dark {
+  --divider-color: var(--bg5);
+  --frame-divider-color: var(--divider-color);
+  --prompt-border-color: var(--divider-color);
+  --background-secondary: var(--bg3);
+  --interactive-normal: var(--bg7);
+  --background-modifier-form-field: var(--background-secondary);
+  --background-modifier-form-field-highlighted: var(--background-secondary);
 }
 
-.menu {
-	padding: var(--size-2-1);
+/* .notice-container .notice { */
+/*   background-color: var(--bg7); */
+/* } */
+
+/* Top left titlebar, overrides --titlebar-backgrounds */
+/* .is-hidden-frameless:not(.is-fullscreen) */
+/* .workspace-tabs.mod-top-left-space .workspace-tab-header-container { */
+/*   background-color: var(--bg2); */
+/* } */
+
+/* Code */
+.cm-s-obsidian span.cm-error {
+  color: var(--code-keyword);
 }
 
-.menu-item {
-	padding: var(--size-4-1) var(--size-4-2);
+/* Set monospace font in source view mode */
+.markdown-source-view.mod-cm6:not(.is-live-preview)
+  .cm-scroller:not(.is-live-preview) {
+  font-family: monospace !important;
+  font-size: var(--code-size);
 }
 
-.menu-separator {
-	margin: var(--size-2-1) calc(var(--size-2-1) * -1);
+/* Use monospace characters for indentation -> adds more spacing */
+.cm-hmd-list-indent {
+  font-family: var(--font-monospace) !important;
+}
+
+/* Latex font size */
+.math {
+  font-size: 1.175em;
+  line-height: 0.8333;
+  margin-top: -4px;
+  margin-bottom: -4px;
+}
+
+/* Latex: line height of multiline equations */
+.math-block mjx-mtr:not(:first-child) mjx-mtd {
+  padding-top: 0.5em !important;
+}
+
+/* Latex: decrease padding above/below blocks in live preview */
+.markdown-source-view.mod-cm6 .math-block > mjx-container {
+  padding: 2px !important;
+}
+/* mjx-container { font-size: 1.175em; }*/
+/* mjx-container[display="true"] { font-size: 1.175em; }*/
+
+/* Remove curves from tabs */
+.mod-root {
+  --tab-curve: 0px;
+  --tab-radius: 0px;
+  --tab-radius-active: 0px;
+}
+
+.mod-root .workspace-tab-header-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* t and b center the tab container, r moves the new tab + closer */
+.mod-root .workspace-tab-header-container-inner {
+  margin: 2px -6px 2px -13px;
+}
+
+.mod-root .workspace-tab-header-inner {
+  padding: 0 0 0 4px;
+}
+
+.workspace-tab-header-new-tab {
+  padding: 0;
+}
+
+.workspace .mod-root .workspace-tab-header {
+  padding: 0px 4px;
+}
+
+/* Remove tab container */
+.workspace-tab-header-container .workspace-tab-header.is-active {
+  box-shadow: none;
+  /* background-color: var(--titlebar-background); */
+}
+
+/* Small divider to the right of every tab */
+.mod-root .workspace-tab-header {
+  border-right: 1.5px solid var(--tab-divider-color);
+  height: 75%;
+  padding: 0;
+  /* Adjust text and close button slightly up: */
+  margin: 0 0 1px 0;
+  align-self: center;
+}
+
+/* Hide tab divider that appears when there's >= 2 tabs */
+.workspace .mod-root .workspace-tab-header-inner::after {
+  display: none;
+}
+
+/* .workspace-tab-header-container-inner { */
+/*   margin: 6px -5px 0; */
+/* } */
+
+/* Tab title */
+/* Could be center, but hover state is weird */
+.workspace-tab-header-inner-title {
+  text-align: left;
+  padding: 2px 2px;
+}
+.workspace-tab-header-title:hover {
+  background-color: transparent;
+}
+
+/* Animate breadcrumb into view on hover */
+.view-header-title-container {
+  opacity: 0;
+  transition: opacity 0.125s ease-in-out;
+}
+
+.view-header-title-container:hover {
+  opacity: 1;
+}
+
+/* Keep breadcrumb visible if text field is active, but not hovered */
+.view-header-title-container:focus-within {
+  opacity: 1;
+  transition: opacity 0.125s ease-in-out;
 }
