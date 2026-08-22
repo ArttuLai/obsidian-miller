@@ -1,15 +1,18 @@
 body {
-  --tab-font-size: 0.82em;
-  --link-decoration: none;
-  --link-external-decoration: none;
-  /* Corner radius of table */
   --radius-s: 6px;
   --table-border-width: 1px;
   --table-border-color: none;
-  --table-bg: var(--bg2);
   --table-edge-cell-padding-first: 10px;
   --table-edge-cell-padding-last: 10px;
   --table-cell-padding: 10px 10px;
+  --tab-font-size: 0.82em;
+  --code-size: 0.88em;
+  --code-radius: var(--radius-s);
+  --line-height-normal: 1.5;
+  --line-height-tight: 1.3;
+  --table-line-height: 1.35;
+  --link-decoration: none;
+  --link-external-decoration: none;
   --h1-size: 1.618em;
   --h2-size: 1.425em;
   --h3-size: 1.255em;
@@ -34,11 +37,7 @@ body {
   --h4-style: normal;
   --h5-style: normal;
   --h6-style: normal;
-  --code-size: 0.88em;
-  /* Readable line width */
-  --file-line-width: 640px !important;
-  /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap */
-  /* text-wrap: pretty; */
+  --file-line-width: 58ch;
 }
 
 /* Dark theme color variables */
@@ -54,14 +53,12 @@ body {
   --tx1: #cbcccf;
   --tx2: #97989b;
   --tx3: #6e7175;
-
   --background-primary: var(--bg1);
   --background-secondary: var(--bg2);
   --background-primary-alt: var(--bg3);
   --background-secondary-alt: var(--bg4);
   --titlebar-background: var(--bg2);
   --titlebar-background-focused: var(--bg2);
-
   --ribbon-background: var(--background-secondary);
   --interactive-normal: var(--bg7);
   --icon-color-active: var(--tx1);
@@ -72,26 +69,23 @@ body {
   --titlebar-text-color-focused: var(--tx1);
   --vault-profile-color: var(--tx1);
   --vault-profile-color-hover: var(--tx1);
-  --background-modifier-hover: var(--bg6);
+  --modal-sidebar-background: var(--background-secondary);
+  --settings-items-background: var(--background-secondary);
+  --background-modifier-message: var(--bg6);
+  --background-modifier-hover: var(--bg5);
   --background-modifier-form-field: var(--background-secondary);
   --background-modifier-form-field-highlighted: var(
     --background-secondary-alt
   );
-  --modal-sidebar-background: var(--background-secondary);
-  --settings-items-background: var(--background-secondary);
-  --background-modifier-message: var(--bg6);
-
   --tab-background-active: var(--background-secondary);
   --tab-container-background: var(--background-secondary);
   --tab-text-color-focused-active: var(--tx1);
   --tab-text-color-focused: var(--tx3);
   --tab-text-color-focused-active-current: var(--tx1);
   --tab-divider-color: var(--bg8);
-
   --divider-color: var(--bg6);
   --frame-divider-color: var(--divider-color);
   --prompt-border-color: var(--divider-color);
-
   --text-normal: var(--tx1);
   --text-bold: var(--tx1);
   --text-italic: var(--tx1);
@@ -106,7 +100,6 @@ body {
   --nav-collapse-icon-color-collapsed: var(--tx2);
   --text-blockquote: var(--tx2);
   --text-faint: var(--tx3);
-  --text-formatting: var(--tx3);
   --list-marker-color: var(--tx3);
   --color-red: #e06e77;
   --color-orange: #d29966;
@@ -131,6 +124,10 @@ body {
   --indentation-guide-width: 2px;
   --indentation-guide-width-active: 2px;
   --blockquote-border-thickness: 2px;
+  --table-background: #1c1d1e;
+  --table-header-background: var(--table-background);
+  --table-header-background-hover: none;
+  --table-selection: var(--bg4);
 }
 
 /* Mobile dark theme color variables */
@@ -144,16 +141,6 @@ body {
   --background-modifier-form-field-highlighted: var(--background-secondary);
 }
 
-/* .notice-container .notice { */
-/*   background-color: var(--bg7); */
-/* } */
-
-/* Top left titlebar, overrides --titlebar-backgrounds */
-/* .is-hidden-frameless:not(.is-fullscreen) */
-/* .workspace-tabs.mod-top-left-space .workspace-tab-header-container { */
-/*   background-color: var(--bg2); */
-/* } */
-
 /* Code */
 .cm-s-obsidian span.cm-error {
   color: var(--code-keyword);
@@ -164,6 +151,16 @@ body {
   .cm-scroller:not(.is-live-preview) {
   font-family: monospace !important;
   font-size: var(--code-size);
+}
+
+/* Set file line width actually here */
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
+  --file-line-width: 58ch;
+}
+
+/* Make code blocks extend to right padding edge */
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-line {
+  max-width: 100%;
 }
 
 /* Use monospace characters for indentation -> adds more spacing */
@@ -188,8 +185,6 @@ body {
 .markdown-source-view.mod-cm6 .math-block > mjx-container {
   padding: 2px !important;
 }
-/* mjx-container { font-size: 1.175em; }*/
-/* mjx-container[display="true"] { font-size: 1.175em; }*/
 
 /* Remove curves from tabs */
 .mod-root {
@@ -216,14 +211,9 @@ body {
   padding: 0;
 }
 
-.workspace .mod-root .workspace-tab-header {
-  padding: 0px 4px;
-}
-
 /* Remove tab container */
 .workspace-tab-header-container .workspace-tab-header.is-active {
   box-shadow: none;
-  /* background-color: var(--titlebar-background); */
 }
 
 /* Small divider to the right of every tab */
@@ -231,9 +221,14 @@ body {
   border-right: 1.5px solid var(--tab-divider-color);
   height: 75%;
   padding: 0;
+
   /* Adjust text and close button slightly up: */
   margin: 0 0 1px 0;
   align-self: center;
+}
+
+.workspace .mod-root .workspace-tab-header {
+  padding: 0 4px;
 }
 
 /* Hide tab divider that appears when there's >= 2 tabs */
@@ -241,16 +236,12 @@ body {
   display: none;
 }
 
-/* .workspace-tab-header-container-inner { */
-/*   margin: 6px -5px 0; */
-/* } */
-
-/* Tab title */
-/* Could be center, but hover state is weird */
+/* Tab title, could be center, but hover state is weird */
 .workspace-tab-header-inner-title {
   text-align: left;
   padding: 2px 2px;
 }
+
 .workspace-tab-header-title:hover {
   background-color: transparent;
 }
@@ -269,4 +260,122 @@ body {
 .view-header-title-container:focus-within {
   opacity: 1;
   transition: opacity 0.125s ease-in-out;
+}
+
+:root table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Active table cell bg */
+.table-cell-wrapper:active,
+.table-cell-wrapper:focus,
+.table-cell-wrapper:focus-within {
+  background-color: var(--bg4);
+}
+
+.cm-html-embed td,
+.markdown-rendered td,
+.cm-html-embed th,
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+  padding: 10px;
+}
+
+.markdown-preview-view,
+.cm-sizer {
+  table {
+    position: relative;
+    border-radius: var(--radius-s);
+  }
+
+  table::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    border: var(--table-border-width) solid var(--table-border-color);
+    border-radius: var(--radius-s);
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    pointer-events: none;
+    content: "";
+  }
+
+  thead,
+  tbody {
+    background-color: var(--table-background);
+  }
+
+  tr td,
+  tr th {
+    border-right: none;
+    border-bottom: none;
+  }
+
+  thead tr th {
+    border-top: none;
+  }
+
+  th:first-child,
+  th:first-child .table-cell-wrapper {
+    border-top-left-radius: var(--radius-s);
+  }
+
+  th:last-child,
+  th:last-child .table-cell-wrapper {
+    border-top-right-radius: var(--radius-s);
+  }
+
+  tr:last-child td:first-child,
+  tr:last-child td:first-child .table-cell-wrapper {
+    border-bottom-left-radius: var(--radius-s);
+  }
+
+  tr:last-child td:last-child,
+  tr:last-child td:last-child .table-cell-wrapper {
+    border-bottom-right-radius: var(--radius-s);
+  }
+
+  .cm-table-widget[dir="rtl"],
+  .el-table[dir="rtl"],
+  div[dir="rtl"] {
+    th:first-child,
+    th:first-child .table-cell-wrapper {
+      border-top-right-radius: var(--radius-s);
+      border-top-left-radius: 0;
+    }
+
+    th:last-child,
+    th:last-child .table-cell-wrapper {
+      border-top-right-radius: 0;
+      border-top-left-radius: var(--radius-s);
+    }
+
+    tr th:first-child,
+    tr td:first-child {
+      border-left: var(--table-border-width) solid var(--table-border-color);
+    }
+
+    tr th:last-child,
+    tr td:last-child {
+      border-left-width: 0 !important;
+    }
+
+    tr:last-child td:first-child,
+    tr:last-child td:first-child .table-cell-wrapper {
+      border-bottom-right-radius: var(--radius-s);
+      border-bottom-left-radius: 0;
+    }
+
+    tr:last-child td:last-child,
+    tr:last-child td:last-child .table-cell-wrapper {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: var(--radius-s);
+    }
+  }
+
+  .table-col-btn,
+  .table-row-btn {
+    border: none !important;
+  }
 }
