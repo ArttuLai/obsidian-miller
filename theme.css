@@ -29,7 +29,7 @@
 .theme-light {
   --bg1: #ecedef;
   --bg1-2: #e8e9ea;
-  --bg2: #e0e1e2;
+  --bg2: #e4e5e6;
   --bg3: #e0e1e2;
   --bg4: #dbdcdd;
   --bg5: #d7d8d9;
@@ -48,7 +48,7 @@
   --color-purple: #8265c5;
   --color-pink: #a163b5;
   --code-normal: #353638;
-  --code-comment: #727477;
+  --code-comment: #9c9d9e;
   --code-punctuation: #7e8184;
 }
 
@@ -67,6 +67,9 @@ body {
   --radius-s: 6px;
   --table-border-width: 1px;
   --table-border-color: none;
+  --indentation-guide-width: 2px;
+  --indentation-guide-width-active: 2px;
+  --blockquote-border-thickness: 2px;
   --table-edge-cell-padding-first: 10px;
   --table-edge-cell-padding-last: 10px;
   --table-cell-padding: 10px 10px;
@@ -153,9 +156,6 @@ body {
   --text-blockquote: var(--tx2);
   --text-faint: var(--tx3);
   --list-marker-color: var(--tx3);
-  --indentation-guide-width: 2px;
-  --indentation-guide-width-active: 2px;
-  --blockquote-border-thickness: 2px;
   --table-background: var(--code-background);
   --table-header-background: var(--table-background);
   --table-header-background-hover: none;
@@ -229,27 +229,32 @@ body {
   padding: 2px 0 !important;
 }
 
-/* Remove curves from tabs */
+/* Remove curves from tabs, add hover state radius */
 .mod-root {
-  --tab-curve: 0px;
-  --tab-radius: 0px;
-  --tab-radius-active: 0px;
+  --tab-curve: 0;
+  --tab-radius: var(--radius-s);
+  --tab-radius-active: 0;
 }
 
+/* Left padding of leftmost tab */
 .mod-root .workspace-tab-header-container {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* t and b center the tab container, r moves the new tab + closer */
+/* t and b center the tab container, also affects hover rect,
+*  r moves the new tab + closer,
+*  l makes leftmost tab left padding smaller */
 .mod-root .workspace-tab-header-container-inner {
-  margin: 2px -6px 2px -13px;
+  margin: 0 -8px 0 -15px;
 }
 
+/* Tab text inside the hover rect */
 .mod-root .workspace-tab-header-inner {
-  padding: 0 0 0 4px;
+  padding: 0 2px 0 6px;
 }
 
+/* Left padding for new tab + */
 .workspace-tab-header-new-tab {
   padding: 0;
 }
@@ -270,8 +275,9 @@ body {
   align-self: center;
 }
 
+/* tab text and x container, affects hover */
 .workspace .mod-root .workspace-tab-header {
-  padding: 0 4px;
+  padding: 1px 5px;
 }
 
 /* Hide tab divider that appears when there's >= 2 tabs */
@@ -282,7 +288,7 @@ body {
 /* Tab title, could be center, but hover state is weird */
 .workspace-tab-header-inner-title {
   text-align: left;
-  padding: 2px 2px;
+  /* padding: 2px 2px; */
 }
 
 .workspace-tab-header-title:hover {
