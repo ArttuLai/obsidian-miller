@@ -1,3 +1,68 @@
+/* Dark theme color variables */
+.theme-dark {
+  --bg1: #1a1b1c;
+  --bg1-2: #1c1d1e;
+  --bg2: #1e1f20;
+  --bg3: #222325;
+  --bg4: #26272a;
+  --bg5: #292a2c;
+  --bg6: #2d2e30;
+  --bg7: #333436;
+  --bg8: #363739;
+  --tx1: #cbcccf;
+  --tx2: #97989b;
+  --tx3: #74777b;
+  --color-red: #e06e77;
+  --color-orange: #d49559;
+  --color-yellow: #deb674;
+  --color-green: #7fb370;
+  --color-cyan: #77bcba;
+  --color-blue: #6d9de3;
+  --color-purple: #a084e7;
+  --color-pink: #c282d6;
+  --code-normal: #bbbcbd;
+  --code-comment: #626467;
+  --code-punctuation: #5e6164;
+}
+
+/* Light theme color variables */
+.theme-light {
+  --bg1: #ecedef;
+  --bg1-2: #e8e9ea;
+  --bg2: #e0e1e2;
+  --bg3: #e0e1e2;
+  --bg4: #dbdcdd;
+  --bg5: #d7d8d9;
+  --bg6: #d2d3d4;
+  --bg7: #d1d2d3;
+  --bg8: #cbcccd;
+  --tx1: #1a1b1c;
+  --tx2: #444547;
+  --tx3: #66686b;
+  --color-red: #c75761;
+  --color-orange: #a16426;
+  --color-yellow: #b1873b;
+  --color-green: #5d8f4e;
+  --color-cyan: #569a99;
+  --color-blue: #5180c3;
+  --color-purple: #8265c5;
+  --color-pink: #a163b5;
+  --code-normal: #353638;
+  --code-comment: #727477;
+  --code-punctuation: #7e8184;
+}
+
+/* Mobile dark theme color variables */
+.is-mobile.theme-dark {
+  --divider-color: var(--bg5);
+  --frame-divider-color: var(--divider-color);
+  --prompt-border-color: var(--divider-color);
+  --background-secondary: var(--bg3);
+  --interactive-normal: var(--bg7);
+  --background-modifier-form-field: var(--background-secondary);
+  --background-modifier-form-field-highlighted: var(--background-secondary);
+}
+
 body {
   --radius-s: 6px;
   --table-border-width: 1px;
@@ -39,27 +104,12 @@ body {
   --h4-style: normal;
   --h5-style: normal;
   --h6-style: normal;
-}
-
-/* Dark theme color variables */
-.theme-dark {
-  --bg1: #1a1b1c;
-  --bg2: #1e1f20;
-  --bg3: #222324;
-  --bg4: #262729;
-  --bg5: #292a2b;
-  --bg6: #2d2e2f;
-  --bg7: #333436;
-  --bg8: #363739;
-  --tx1: #cbcccf;
-  --tx2: #97989b;
-  --tx3: #6e7175;
   --background-primary: var(--bg1);
   --background-secondary: var(--bg2);
   --background-primary-alt: var(--bg3);
   --background-secondary-alt: var(--bg4);
-  --titlebar-background: var(--bg2);
-  --titlebar-background-focused: var(--bg2);
+  --titlebar-background: var(--titlebar-background-focused);
+  --titlebar-background-focused: var(--background-primary);
   --ribbon-background: var(--background-secondary);
   --interactive-normal: var(--bg7);
   --icon-color-active: var(--tx1);
@@ -72,14 +122,15 @@ body {
   --vault-profile-color-hover: var(--tx1);
   --modal-sidebar-background: var(--background-secondary);
   --settings-items-background: var(--background-secondary);
-  --background-modifier-message: var(--bg6);
+  --background-modifier-border: var(--divider-color);
+  --background-modifier-message: var(--bg5);
   --background-modifier-hover: var(--bg5);
   --background-modifier-form-field: var(--background-secondary);
   --background-modifier-form-field-highlighted: var(
     --background-secondary-alt
   );
-  --tab-background-active: var(--background-secondary);
-  --tab-container-background: var(--background-secondary);
+  --tab-background-active: var(--titlebar-background-focused);
+  --tab-container-background: var(--titlebar-background-focused);
   --tab-text-color-focused-active: var(--tx1);
   --tab-text-color-focused: var(--tx3);
   --tab-text-color-focused-active-current: var(--tx1);
@@ -102,45 +153,36 @@ body {
   --text-blockquote: var(--tx2);
   --text-faint: var(--tx3);
   --list-marker-color: var(--tx3);
-  --color-red: #e06e77;
-  --color-orange: #d29966;
-  --color-yellow: #d6ba70;
-  --color-green: #7fb370;
-  --color-cyan: #68b9b7;
-  --color-blue: #5f9cf3;
-  --color-purple: #a084e7;
-  --color-pink: #c282d6;
-  --code-background: var(--bg3);
-  --code-normal: #bbbcbd;
+  --indentation-guide-width: 2px;
+  --indentation-guide-width-active: 2px;
+  --blockquote-border-thickness: 2px;
+  --table-background: var(--code-background);
+  --table-header-background: var(--table-background);
+  --table-header-background-hover: none;
+  --table-selection: var(--bg5);
   --code-operator: var(--code-punctuation);
-  --code-comment: #626467;
+  --code-background: var(--bg3);
   --code-function: var(--color-orange);
   --code-important: var(--code-keyword);
   --code-keyword: var(--color-red);
   --code-property: var(--code-normal);
-  --code-punctuation: #5e6164;
-  --code-string: var(--color-green);
+  --code-string: var(--color-yellow);
   --code-tag: var(--code-keyword);
-  --code-value: var(--color-pink);
-  --indentation-guide-width: 2px;
-  --indentation-guide-width-active: 2px;
-  --blockquote-border-thickness: 2px;
-  --table-background: #1c1d1e;
-  --table-header-background: var(--table-background);
-  --table-header-background-hover: none;
-  --table-selection: var(--bg4);
+  --code-value: var(--color-blue);
 }
 
-/* Mobile dark theme color variables */
-.is-mobile.theme-dark {
-  --divider-color: var(--bg5);
-  --frame-divider-color: var(--divider-color);
-  --prompt-border-color: var(--divider-color);
-  --background-secondary: var(--bg3);
-  --interactive-normal: var(--bg7);
-  --background-modifier-form-field: var(--background-secondary);
-  --background-modifier-form-field-highlighted: var(--background-secondary);
+/* Right sidebar */
+.workspace-tabs .workspace-leaf {
+  background-color: var(--background-primary);
 }
+
+/* Top left titlebar, overrides --titlebar-backgrounds */
+/* .is-hidden-frameless:not(.is-fullscreen) */
+/*   .workspace-tabs.mod-top-left-space */
+/*   .workspace-tab-header-container { */
+/*   background-color: var(--background-secondary); */
+/*   --tab-background-active: var(--background-secondary); */
+/* } */
 
 /* Code */
 .cm-s-obsidian span.cm-error {
@@ -150,13 +192,13 @@ body {
 /* Set monospace font in source view mode */
 .markdown-source-view.mod-cm6:not(.is-live-preview)
   .cm-scroller:not(.is-live-preview) {
-  font-family: monospace !important;
+  font-family: monospace;
   font-size: var(--code-size);
 }
 
-/* Set file line width actually here */
+/* Set file line width actually here, ~80 chars (≈ 58ch) */
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
-  --file-line-width: 58ch;
+  --file-line-width: 36em;
 }
 
 /* Make code blocks extend to right padding edge */
@@ -263,6 +305,13 @@ body {
   transition: opacity 0.125s ease-in-out;
 }
 
+/* Align column drag handle, it had ±1px adjustment */
+.markdown-source-view.mod-cm6
+  .cm-table-widget.is-dragging
+  .table-col-drag-handle:active {
+  left: 0 !important;
+}
+
 :root table {
   border-collapse: separate;
   border-spacing: 0;
@@ -272,7 +321,7 @@ body {
 .table-cell-wrapper:active,
 .table-cell-wrapper:focus,
 .table-cell-wrapper:focus-within {
-  background-color: var(--bg4);
+  background-color: var(--bg5);
 }
 
 .cm-html-embed td,
