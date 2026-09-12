@@ -28,16 +28,16 @@
 
 /* Light theme color variables */
 .theme-light {
-  --bg0: #e7e8e9;
-  --bg1: #e0e1e2;
-  --bg1-2: #dedfe0;
-  --bg2: #dcddde;
-  --bg3: #d3d4d5;
-  --bg4: #d2d3d4;
-  --bg5: #cdcecf;
-  --bg6: #cacacb;
-  --bg7: #c5c6c7;
-  --bg8: #c0c1c2;
+  --bg0: #f1f2f3;
+  --bg1: #eaebec;
+  --bg1-2: #e8e9ea;
+  --bg2: #e6e7e8;
+  --bg3: #e1e2e3;
+  --bg4: #dbdcde;
+  --bg5: #d7d8d9;
+  --bg6: #d3d4d5;
+  --bg7: #cdcecf;
+  --bg8: #cacbcc;
   --tx1: #1b1c1d;
   --tx2: #444548;
   --tx3: #66686b;
@@ -190,6 +190,13 @@ body {
   --code-string: var(--color-yellow);
   --code-tag: var(--code-keyword);
   --code-value: var(--color-blue);
+  /* Plugin: Notebook Navigator */
+  --nn-theme-quick-actions-bg: var(--background-secondary-alt);
+  --nn-theme-quick-actions-border: var(--tab-divider-color);
+  --nn-theme-quick-actions-separator-color: var(--tab-divider-color);
+  --nn-theme-nav-bg: var(--background-secondary);
+  --nn-theme-list-bg: var(--background-secondary);
+  --nn-scroller-padding: 6px;
 }
 
 /* Sidebars */
@@ -470,4 +477,66 @@ input[type="search"] {
 
 .theme-light input[type="search"] {
   background-color: var(--bg5);
+}
+
+/* Plugin: Latex suite */
+/* Highlight brackets */
+.theme-light .latex-suite-highlighted-bracket,
+.theme-light
+  .latex-suite-highlighted-bracket
+  [class^="latex-suite-color-bracket-"] {
+  background-color: hsl(var(--accent-h), var(--accent-s), 40%, 0.14);
+}
+
+.theme-dark .latex-suite-highlighted-bracket,
+.theme-dark
+  .latex-suite-highlighted-bracket
+  [class^="latex-suite-color-bracket-"] {
+  background-color: hsl(var(--accent-h), var(--accent-s), 70%, 0.2);
+}
+
+/* Disable highlighting of active placeholder */
+.latex-suite-snippet-placeholder {
+  border-radius: 0px;
+  background-color: transparent;
+  outline: none;
+  /* border-radius: 2px; */
+  /* background-color: var(--placeholder-bg); */
+  /* outline: var(--placeholder-outline) solid 1px; */
+}
+
+/* Color matching brackets */
+.theme-light .latex-suite-color-bracket-0,
+.theme-light .latex-suite-color-bracket-0 .cm-bracket {
+  color: var(--color-blue);
+}
+
+.theme-dark .latex-suite-color-bracket-0,
+.theme-dark .latex-suite-color-bracket-0 .cm-bracket {
+  color: var(--color-cyan);
+}
+
+.theme-light .latex-suite-color-bracket-1,
+.theme-light .latex-suite-color-bracket-1 .cm-bracket {
+  color: var(--color-pink);
+}
+
+.theme-dark .latex-suite-color-bracket-1,
+.theme-dark .latex-suite-color-bracket-1 .cm-bracket {
+  color: var(--color-pink);
+}
+
+.theme-light .latex-suite-color-bracket-2,
+.theme-light .latex-suite-color-bracket-2 .cm-bracket {
+  color: var(--color-green);
+}
+
+.theme-dark .latex-suite-color-bracket-2,
+.theme-dark .latex-suite-color-bracket-2 .cm-bracket {
+  color: var(--color-green);
+}
+
+/* Plugin: Style Settings */
+.style-settings-heading {
+  border-bottom: none;
 }
