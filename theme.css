@@ -23,21 +23,23 @@
   --code-normal: #bbbcbd;
   --code-comment: #626467;
   --code-punctuation: #5e6164;
+  --background-modifier-hover: #cbcccf12;
 }
 
 /* Light theme color variables */
 .theme-light {
-  --bg1: #ecedef;
-  --bg1-2: #e8e9ea;
-  --bg2: #e4e5e6;
-  --bg3: #e0e1e2;
-  --bg4: #dbdcdd;
-  --bg5: #d7d8d9;
-  --bg6: #d2d3d4;
-  --bg7: #d1d2d3;
-  --bg8: #cbcccd;
-  --tx1: #1a1b1c;
-  --tx2: #444547;
+  --bg0: #e7e8e9;
+  --bg1: #e0e1e2;
+  --bg1-2: #dedfe0;
+  --bg2: #dcddde;
+  --bg3: #d3d4d5;
+  --bg4: #d2d3d4;
+  --bg5: #cdcecf;
+  --bg6: #cacacb;
+  --bg7: #c5c6c7;
+  --bg8: #c0c1c2;
+  --tx1: #1b1c1d;
+  --tx2: #444548;
   --tx3: #66686b;
   --color-red: #c75761;
   --color-orange: #a16426;
@@ -50,6 +52,28 @@
   --code-normal: #353638;
   --code-comment: #9c9d9e;
   --code-punctuation: #7e8184;
+  --background-modifier-message: var(--tx3);
+  --background-modifier-hover: #1a1b1c14;
+}
+
+.theme-light .setting-group .setting-items,
+.theme-light .setting-group .setting-group-search {
+  background-color: var(--bg0);
+}
+
+.theme-light .setting-item-control button {
+  background-color: var(--bg3);
+}
+
+.theme-light .dropdown {
+  --dropdown-icon-background: var(--bg3);
+}
+
+.theme-light select:hover,
+.theme-light .dropdown:hover {
+  --dropdown-background-hover: var(--bg3);
+  --dropdown-background: var(--bg3);
+  --dropdown-icon-background: var(--bg3);
 }
 
 /* Mobile dark theme color variables */
@@ -127,7 +151,6 @@ body {
   --settings-items-background: var(--background-secondary);
   --background-modifier-border: var(--divider-color);
   --background-modifier-message: var(--bg5);
-  --background-modifier-hover: var(--bg5);
   --background-modifier-form-field: var(--bg6);
   --background-modifier-form-field-highlighted: var(--bg7);
   --tab-background-active: var(--titlebar-background-focused);
@@ -443,4 +466,8 @@ body {
 
 input[type="search"] {
   background-color: var(--bg6);
+}
+
+.theme-light input[type="search"] {
+  background-color: var(--bg5);
 }
