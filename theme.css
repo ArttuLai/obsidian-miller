@@ -11,18 +11,22 @@
   --bg8: #37383a;
   --tx1: #cbcccf;
   --tx2: #97989b;
-  --tx3: #74777b;
+  --tx3: #747679;
+  --tx4: #585a5c;
+  --ac1: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 12%));
+  --ac2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 17%));
+  --ac3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 22%));
   --color-red: #e06e77;
   --color-orange: #d49559;
   --color-yellow: #deb674;
   --color-green: #7fb370;
   --color-cyan: #7cb6c2;
-  --color-blue: #73a2e6;
+  --color-blue: #6e9ed6;
   --color-purple: #af97f1;
   --color-pink: #c991dc;
   --code-normal: #bbbcbd;
   --code-comment: #626467;
-  --code-punctuation: #5e6164;
+  --code-punctuation: #939496;
   --background-modifier-hover: #cbcccf12;
 }
 
@@ -39,19 +43,23 @@
   --bg7: #cfd0d1;
   --bg8: #cccdce;
   --tx1: #1b1c1d;
-  --tx2: #444548;
-  --tx3: #66686b;
+  --tx2: #444649;
+  --tx3: #666769;
+  --tx4: #808285;
+  --ac1: hsl(var(--accent-h), calc(var(--accent-s) + 0.75%), calc(var(--accent-l) - 10%));
+  --ac2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 1%));
+  --ac3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 10%));
   --color-red: #cd4c5b;
   --color-orange: #bc742d;
   --color-yellow: #b28b1e;
-  --color-green: #5a8c4b;
+  --color-green: #578d47;
   --color-cyan: #649fac;
   --color-blue: #4877b9;
   --color-purple: #8265c5;
   --color-pink: #a163b5;
   --code-normal: #353638;
   --code-comment: #9c9d9e;
-  --code-punctuation: #7e8184;
+  --code-punctuation: #5a5c5f;
   --background-modifier-message: var(--tx3);
   --background-modifier-hover: #1a1b1c14;
 }
@@ -110,15 +118,20 @@ input[type="search"] {
 }
 
 body {
-  --radius-s: 6px;
+  --color-accent: var(--ac1);
+  --color-accent-1: var(--ac2);
+  --color-accent-2: var(--ac3);
+  --text-accent: var(--ac1);
+  --text-accent-hover: var(--ac2);
+  --radius-s: 4px;
   --table-border-width: 1px;
-  --table-border-color: none;
-  --indentation-guide-width: 2px;
-  --indentation-guide-width-active: 2px;
+  --table-border: none;
+  --indentation-guide-width: 1.5px;
+  --indentation-guide-width-active: 1.5px;
   --blockquote-border-thickness: 2px;
-  --table-edge-cell-padding-first: 10px;
-  --table-edge-cell-padding-last: 10px;
-  --table-cell-padding: 10px 10px;
+  /* --table-edge-cell-padding-first: 10px; */
+  /* --table-edge-cell-padding-last: 10px; */
+  /* --table-cell-padding: 10px 10px; */
   --tab-font-size: 0.82em;
   --code-size: 0.88em;
   --code-radius: var(--radius-s);
@@ -158,7 +171,8 @@ body {
   --background-primary-alt: var(--bg3);
   --background-secondary-alt: var(--bg4);
   --titlebar-background: var(--titlebar-background-focused);
-  --titlebar-background-focused: var(--background-primary-alt);
+  --titlebar-background-focused: var(--background-primary);
+  --titlebar-text-color-focused: var(--tx1);
   --ribbon-background: var(--background-secondary);
   --interactive-normal: var(--bg7);
   --icon-color-active: var(--tx1);
@@ -166,11 +180,10 @@ body {
   --nav-item-color-active: var(--tx1);
   --nav-item-color-hover: var(--tx1);
   --nav-item-color-selected: var(--tx1);
-  --titlebar-text-color-focused: var(--tx1);
   --vault-profile-color: var(--tx1);
   --vault-profile-color-hover: var(--tx1);
-  --modal-sidebar-background: var(--background-secondary);
-  --settings-items-background: var(--background-secondary);
+  --modal-sidebar-background: var(--background-primary);
+  --settings-items-background: var(--background-primary-alt);
   --background-modifier-border: var(--divider-color);
   --background-modifier-message: var(--bg5);
   --background-modifier-form-field: var(--bg6);
@@ -198,19 +211,29 @@ body {
   --nav-collapse-icon-color-collapsed: var(--tx2);
   --text-blockquote: var(--tx2);
   --text-faint: var(--tx3);
-  --list-marker-color: var(--tx3);
-  --table-background: var(--code-background);
-  --table-header-background: var(--table-background);
-  --table-header-background-hover: none;
+  --list-marker-color: var(--text-accent);
+  --list-indent: 2.2em;
+  --list-indent-editing: 0.6em;
+  --list-spacing: 0;
+  --list-bullet-size: 0.4em;
+  --list-marker-gap: 0.45em;
+  /* Tables styled elsewhere */
+  /* --table-background: var(--code-background); */
+  /* --table-header-background: var(--table-background); */
+  /* --table-header-background-hover: none; */
   --table-selection: var(--bg5);
+  --task-border: var(--tx3);
+  --task-done-border: var(--tx4);
+  --task-done-color: var(--tx3);
+  --task-done-check-color: var(--tx3);
   --code-operator: var(--code-punctuation);
   --code-background: var(--bg3);
-  --code-function: var(--color-blue);
+  --code-function: var(--color-orange);
   --code-important: var(--code-keyword);
   --code-keyword: var(--color-red);
   --code-property: var(--code-normal);
   --code-string: var(--color-green);
-  --code-tag: var(--code-keyword);
+  --code-tag: var(--color-purple);
   --code-value: var(--color-yellow);
   /* Plugin: Notebook Navigator */
   --nn-theme-quick-actions-bg: var(--background-secondary-alt);
@@ -221,17 +244,61 @@ body {
   --nn-scroller-padding: 6px;
 }
 
-/* Sidebars */
+/* Remove icon and leftover padding on external links */
+.external-link {
+  background-image: none;
+  background-size: 0;
+  padding-inline-end: 0;
+}
+
+/* Hide block edit button on e.g. math */
+.markdown-source-view.mod-cm6 .embed-action {
+  display: none;
+}
+
+/* Hide outline when hovering e.g. math */
+.markdown-source-view.mod-cm6 .cm-embed-block:not(.cm-table-widget):hover {
+  box-shadow: none;
+}
+
+/* Sidedock */
 .workspace-tabs .workspace-leaf {
   background-color: var(--background-secondary);
 }
 
-/* Top left titlebar, overrides --titlebar-backgrounds */
-/* .is-hidden-frameless:not(.is-fullscreen) */
-/*   .workspace-tabs.mod-top-left-space */
+/* When left sidebar is hidden, make titlebar same as note bg */
+/* .mod-macos.is-hidden-frameless:not(.is-popout-window) */
+/*   .workspace */
+/*   .workspace-tabs.mod-top-right-space */
 /*   .workspace-tab-header-container { */
-/*   background-color: var(--background-secondary); */
-/*   --tab-background-active: var(--background-secondary); */
+/*   background-color: var(--background-primary); */
+/* } */
+
+/* Top left titlebar, overrides --titlebar-backgrounds */
+.is-hidden-frameless:not(.is-fullscreen)
+  .workspace-tabs.mod-top-left-space
+  .workspace-tab-header-container {
+  background-color: var(--background-secondary);
+}
+
+.is-hidden-frameless:not(.is-fullscreen)
+  .workspace-tabs.mod-top-right-space
+  .workspace-tab-header-container {
+  background-color: var(--background-secondary);
+}
+
+/* Janky workaround to make titlebar work with right dock open */
+.mod-root .workspace-tab-header-container {
+  background-color: var(--background-primary) !important;
+}
+
+.mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right {
+  background-color: inherit;
+}
+
+/* Disable divider below titlebar */
+/* .workspace-tab-header-container { */
+/*   border-bottom: transparent; */
 /* } */
 
 /* Code */
@@ -240,11 +307,11 @@ body {
 }
 
 /* Set monospace font in source view mode */
-.markdown-source-view.mod-cm6:not(.is-live-preview)
-  .cm-scroller:not(.is-live-preview) {
-  font-family: monospace;
-  font-size: var(--code-size);
-}
+/* .markdown-source-view.mod-cm6:not(.is-live-preview) */
+/*   .cm-scroller:not(.is-live-preview) { */
+/*   font-family: monospace; */
+/*   font-size: var(--code-size); */
+/* } */
 
 /* Set file line width actually here, ~80 chars (≈ 58ch) */
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
@@ -257,9 +324,9 @@ body {
 }
 
 /* Use monospace characters for indentation -> adds more spacing */
-.cm-hmd-list-indent {
-  font-family: var(--font-monospace) !important;
-}
+/* .cm-hmd-list-indent { */
+/*   font-family: var(--font-monospace) !important; */
+/* } */
 
 /* Latex font size */
 .math {
@@ -361,136 +428,322 @@ body {
   transition: opacity 0.125s ease-in-out;
 }
 
-/* Align column drag handle, it had ±1px adjustment */
-.markdown-source-view.mod-cm6
-  .cm-table-widget.is-dragging
-  .table-col-drag-handle:active {
-  left: 0 !important;
+/* /* Align column drag handle, it had ±1px adjustment */ */
+/* .markdown-source-view.mod-cm6 */
+/*   .cm-table-widget.is-dragging */
+/*   .table-col-drag-handle:active { */
+/*   left: 0 !important; */
+/* } */
+/**/
+/* :root table { */
+/*   border-collapse: separate; */
+/*   border-spacing: 0; */
+/* } */
+/**/
+/* /* Active table cell bg */ */
+/* .table-cell-wrapper:active, */
+/* .table-cell-wrapper:focus, */
+/* .table-cell-wrapper:focus-within { */
+/*   background-color: var(--bg5); */
+/* } */
+/**/
+/* .cm-html-embed td, */
+/* .markdown-rendered td, */
+/* .cm-html-embed th, */
+/* .markdown-rendered th, */
+/* .markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper { */
+/*   padding: 10px; */
+/* } */
+/**/
+/* .markdown-preview-view, */
+/* .cm-sizer { */
+/*   table { */
+/*     position: relative; */
+/*     border-radius: var(--radius-s); */
+/*   } */
+/**/
+/*   table::before { */
+/*     position: absolute; */
+/*     z-index: 1; */
+/*     inset: 0; */
+/*     border: var(--table-border-width) solid var(--table-border-color); */
+/*     border-radius: var(--radius-s); */
+/*     width: calc(100% - 2px); */
+/*     height: calc(100% - 2px); */
+/*     pointer-events: none; */
+/*     content: ""; */
+/*   } */
+/**/
+/*   thead, */
+/*   tbody { */
+/*     background-color: var(--table-background); */
+/*   } */
+/**/
+/*   tr td, */
+/*   tr th { */
+/*     border-right: none; */
+/*     border-bottom: none; */
+/*   } */
+/**/
+/*   thead tr th { */
+/*     border-top: none; */
+/*   } */
+/**/
+/*   th:first-child, */
+/*   th:first-child .table-cell-wrapper { */
+/*     border-top-left-radius: var(--radius-s); */
+/*   } */
+/**/
+/*   th:last-child, */
+/*   th:last-child .table-cell-wrapper { */
+/*     border-top-right-radius: var(--radius-s); */
+/*   } */
+/**/
+/*   tr:last-child td:first-child, */
+/*   tr:last-child td:first-child .table-cell-wrapper { */
+/*     border-bottom-left-radius: var(--radius-s); */
+/*   } */
+/**/
+/*   tr:last-child td:last-child, */
+/*   tr:last-child td:last-child .table-cell-wrapper { */
+/*     border-bottom-right-radius: var(--radius-s); */
+/*   } */
+/**/
+/*   .cm-table-widget[dir="rtl"], */
+/*   .el-table[dir="rtl"], */
+/*   div[dir="rtl"] { */
+/*     th:first-child, */
+/*     th:first-child .table-cell-wrapper { */
+/*       border-top-right-radius: var(--radius-s); */
+/*       border-top-left-radius: 0; */
+/*     } */
+/**/
+/*     th:last-child, */
+/*     th:last-child .table-cell-wrapper { */
+/*       border-top-right-radius: 0; */
+/*       border-top-left-radius: var(--radius-s); */
+/*     } */
+/**/
+/*     tr th:first-child, */
+/*     tr td:first-child { */
+/*       border-left: var(--table-border-width) solid var(--table-border-color); */
+/*     } */
+/**/
+/*     tr th:last-child, */
+/*     tr td:last-child { */
+/*       border-left-width: 0 !important; */
+/*     } */
+/**/
+/*     tr:last-child td:first-child, */
+/*     tr:last-child td:first-child .table-cell-wrapper { */
+/*       border-bottom-right-radius: var(--radius-s); */
+/*       border-bottom-left-radius: 0; */
+/*     } */
+/**/
+/*     tr:last-child td:last-child, */
+/*     tr:last-child td:last-child .table-cell-wrapper { */
+/*       border-bottom-right-radius: 0; */
+/*       border-bottom-left-radius: var(--radius-s); */
+/*     } */
+/*   } */
+/**/
+/*   .table-col-btn, */
+/*   .table-row-btn { */
+/*     border: none !important; */
+/*   } */
+/* } */
+
+/* Bear-like checkboxes: a 1.5px open box, and a thinner 1px completed box. */
+/* Stolen from: https://github.com/cherishh/obsidian-bear-style/blob/main/theme.css */
+:is(.markdown-source-view.mod-cm6, .markdown-preview-view.markdown-rendered)
+  input.task-list-item-checkbox:not(:checked) {
+  border-width: 1.5px;
+  border-color: var(--task-border);
 }
 
-:root table {
+/* Completed tasks use Bear's muted palette without an automatic strikethrough. */
+:is(
+  .markdown-source-view.mod-cm6,
+  .markdown-preview-view.markdown-rendered
+) {
+  --checkbox-size: calc(var(--font-text-size) * 1);
+  --checklist-done-color: var(--task-done-color);
+  --checklist-done-decoration: none;
+}
+
+:is(.markdown-source-view.mod-cm6, .markdown-preview-view.markdown-rendered)
+  input.task-list-item-checkbox:checked {
+  --checkbox-marker-color: var(--task-done-check-color);
+
+  background-color: transparent;
+  border-color: var(--task-done-border);
+}
+
+:is(.markdown-source-view.mod-cm6, .markdown-preview-view.markdown-rendered)
+  input.task-list-item-checkbox:checked:is(:hover, :focus-visible) {
+  border-color: var(--task-done-color);
+}
+
+/* List markers: align bullet and one-digit numbered text at about 2.2em.
+   The numbered token is wider, so its trailing gap is smaller. */
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul {
+  --list-marker-gap: 0.58em;
+}
+
+/* Apply the gap to the rendered marker OR its editable token, never both. */
+.markdown-source-view.mod-cm6 :is(.cm-formatting-list-ul, .cm-formatting-list-ol) > :is(.list-bullet, .list-number),
+.markdown-source-view.mod-cm6 :is(.cm-formatting-list-ul, .cm-formatting-list-ol):not(:has(> :is(.list-bullet, .list-number))) {
+  padding-inline-end: var(--list-marker-gap);
+}
+
+.markdown-preview-view.markdown-rendered :is(ul, ol) > li {
+  margin-inline-start: var(--list-indent);
+}
+
+.markdown-preview-view.markdown-rendered .list-bullet {
+  margin-inline-start: -1.1em;
+}
+
+/* Four-level bullet cycle: filled circle, ring, filled diamond, outline diamond.
+   Reading mode inherits a numeric depth through list/list-item boundaries. */
+.markdown-preview-view.markdown-rendered :is(ul, ol) {
+  --bear-list-depth: calc(var(--bear-parent-list-depth, 0) + 1);
+}
+
+.markdown-preview-view.markdown-rendered li {
+  --bear-parent-list-depth: var(--bear-list-depth);
+}
+
+.markdown-preview-view.markdown-rendered .list-bullet {
+  --bear-bullet-phase: mod(var(--bear-list-depth, 1) - 1, 4);
+}
+
+/* Use parsed list depth, not groups of four spaces, for live-preview indent.
+   Two-space, four-space and tab-indented notes then share the same geometry.
+   Raw source mode keeps its literal whitespace. Depth classes cover levels 1–32. */
+.markdown-source-view.mod-cm6 .HyperMD-list-line {
+  --bear-list-depth: 1;
+  --bear-bullet-phase: mod(var(--bear-list-depth) - 1, 4);
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-2 { --bear-list-depth: 2; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-3 { --bear-list-depth: 3; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-4 { --bear-list-depth: 4; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-5 { --bear-list-depth: 5; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-6 { --bear-list-depth: 6; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-7 { --bear-list-depth: 7; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-8 { --bear-list-depth: 8; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-9 { --bear-list-depth: 9; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-10 { --bear-list-depth: 10; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-11 { --bear-list-depth: 11; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-12 { --bear-list-depth: 12; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-13 { --bear-list-depth: 13; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-14 { --bear-list-depth: 14; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-15 { --bear-list-depth: 15; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-16 { --bear-list-depth: 16; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-17 { --bear-list-depth: 17; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-18 { --bear-list-depth: 18; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-19 { --bear-list-depth: 19; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-20 { --bear-list-depth: 20; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-21 { --bear-list-depth: 21; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-22 { --bear-list-depth: 22; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-23 { --bear-list-depth: 23; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-24 { --bear-list-depth: 24; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-25 { --bear-list-depth: 25; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-26 { --bear-list-depth: 26; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-27 { --bear-list-depth: 27; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-28 { --bear-list-depth: 28; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-29 { --bear-list-depth: 29; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-30 { --bear-list-depth: 30; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-31 { --bear-list-depth: 31; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-32 { --bear-list-depth: 32; }
+
+.markdown-source-view.mod-cm6.is-live-preview
+  .HyperMD-list-line:not(.HyperMD-list-line-nobullet) > .cm-hmd-list-indent {
+  width: calc((var(--bear-list-depth) - 1) * var(--list-indent));
+}
+
+:is(.markdown-source-view.mod-cm6, .markdown-preview-view.markdown-rendered) .list-bullet::after {
+  --bear-bullet-hollow: mod(var(--bear-bullet-phase, 0), 2);
+  --bear-bullet-diamond: round(down, calc(var(--bear-bullet-phase, 0) / 2), 1);
+
+  box-sizing: border-box;
+  width: calc(0.4em - 0.04em * var(--bear-bullet-diamond));
+  height: calc(0.4em - 0.04em * var(--bear-bullet-diamond));
+  border: 1px solid var(--list-marker-color);
+  border-radius: calc(50% * (1 - var(--bear-bullet-diamond)));
+  background-color: color-mix(in srgb, var(--list-marker-color) calc(100% * (1 - var(--bear-bullet-hollow))), transparent);
+  transform: rotate(calc(45deg * var(--bear-bullet-diamond)));
+}
+
+::marker {
+  text-indent: 30px !important;
+}
+
+.table-col-btn, .table-row-btn {
+  border: none !important;
+}
+
+ /* Keep explicit Markdown column alignment and the native table editing controls. */
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table {
+  /* --table-border-color: var(--bear-table-border); */
+  --table-border-width: 0px;
+  --table-header-border-width: 0px;
+  --table-column-first-border-width: 0px;
+  --table-column-last-border-width: 0px;
+  --table-row-last-border-width: 0px;
+  --table-line-height: var(--line-height-normal);
+  --table-stripe: var(--background-primary-alt);
+  --table-header-background: var(--table-stripe);
+  --table-header-background-hover: var(--table-stripe);
+  --table-background: transparent;
+  --table-row-alt-background: transparent;
+  --table-row-alt-background-hover: transparent;
+  --table-column-alt-background: transparent;
+  --table-header-color: var(--text-normal);
+  --table-border: var(--bg7);
+
+  border: 1px solid var(--table-border);
   border-collapse: separate;
   border-spacing: 0;
+  border-radius: 4px;
 }
 
-/* Active table cell bg */
-.table-cell-wrapper:active,
-.table-cell-wrapper:focus,
-.table-cell-wrapper:focus-within {
-  background-color: var(--bg5);
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table :is(th, td) {
+  border-inline-end: 1px solid var(--table-border);
+  line-height: var(--line-height);
 }
 
-.cm-html-embed td,
-.markdown-rendered td,
-.cm-html-embed th,
-.markdown-rendered th,
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table :is(th, td):last-child {
+  border-inline-end-width: 0;
+}
+
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table :is(th, td):not([align]) {
+  text-align: left;
+}
+
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table tbody tr:nth-child(even) {
+  background-color: var(--table-stripe);
+}
+
+.markdown-preview-view.markdown-rendered table :is(th, td),
 .markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
-  padding: 10px;
+  padding: 0.4em 0.8em;
 }
 
-.markdown-preview-view,
-.cm-sizer {
-  table {
-    position: relative;
-    border-radius: var(--radius-s);
-  }
-
-  table::before {
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-    border: var(--table-border-width) solid var(--table-border-color);
-    border-radius: var(--radius-s);
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    pointer-events: none;
-    content: "";
-  }
-
-  thead,
-  tbody {
-    background-color: var(--table-background);
-  }
-
-  tr td,
-  tr th {
-    border-right: none;
-    border-bottom: none;
-  }
-
-  thead tr th {
-    border-top: none;
-  }
-
-  th:first-child,
-  th:first-child .table-cell-wrapper {
-    border-top-left-radius: var(--radius-s);
-  }
-
-  th:last-child,
-  th:last-child .table-cell-wrapper {
-    border-top-right-radius: var(--radius-s);
-  }
-
-  tr:last-child td:first-child,
-  tr:last-child td:first-child .table-cell-wrapper {
-    border-bottom-left-radius: var(--radius-s);
-  }
-
-  tr:last-child td:last-child,
-  tr:last-child td:last-child .table-cell-wrapper {
-    border-bottom-right-radius: var(--radius-s);
-  }
-
-  .cm-table-widget[dir="rtl"],
-  .el-table[dir="rtl"],
-  div[dir="rtl"] {
-    th:first-child,
-    th:first-child .table-cell-wrapper {
-      border-top-right-radius: var(--radius-s);
-      border-top-left-radius: 0;
-    }
-
-    th:last-child,
-    th:last-child .table-cell-wrapper {
-      border-top-right-radius: 0;
-      border-top-left-radius: var(--radius-s);
-    }
-
-    tr th:first-child,
-    tr td:first-child {
-      border-left: var(--table-border-width) solid var(--table-border-color);
-    }
-
-    tr th:last-child,
-    tr td:last-child {
-      border-left-width: 0 !important;
-    }
-
-    tr:last-child td:first-child,
-    tr:last-child td:first-child .table-cell-wrapper {
-      border-bottom-right-radius: var(--radius-s);
-      border-bottom-left-radius: 0;
-    }
-
-    tr:last-child td:last-child,
-    tr:last-child td:last-child .table-cell-wrapper {
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: var(--radius-s);
-    }
-  }
-
-  .table-col-btn,
-  .table-row-btn {
-    border: none !important;
-  }
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table thead tr:first-child th:first-child {
+  border-start-start-radius: 3px;
 }
 
-/* Remove icon and leftover padding on external links */
-.external-link {
-  background-image: none;
-  background-size: 0;
-  padding-inline-end: 0;
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table thead tr:first-child th:last-child {
+  border-start-end-radius: 3px;
+}
+
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table tbody tr:last-child td:first-child {
+  border-end-start-radius: 3px;
+}
+
+:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table tbody tr:last-child td:last-child {
+  border-end-end-radius: 3px;
 }
 
 /* Plugin: Latex suite */
