@@ -1,5 +1,6 @@
 /* Dark theme color variables */
 .theme-dark {
+  --bg0: #18191a;
   --bg1: #1a1b1c;
   --bg1-2: #1c1d1e;
   --bg2: #1d1e1f;
@@ -18,9 +19,9 @@
   --ac3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 22%));
   --color-red: #e06e77;
   --color-orange: #d49559;
-  --color-yellow: #deb674;
-  --color-green: #7fb370;
-  --color-cyan: #7cb6c2;
+  --color-yellow: #d4ae6d;
+  --color-green: #82b274;
+  --color-cyan: #72aeb6;
   --color-blue: #6e9ed6;
   --color-purple: #af97f1;
   --color-pink: #c991dc;
@@ -32,7 +33,7 @@
 
 /* Light theme color variables */
 .theme-light {
-  --bg0: #f3f4f5;
+  --bg0: #f0f1f2;
   --bg1: #ecedee;
   --bg1-2: #eaebec;
   --bg2: #e8e9ea;
@@ -46,7 +47,11 @@
   --tx2: #444649;
   --tx3: #666769;
   --tx4: #808285;
-  --ac1: hsl(var(--accent-h), calc(var(--accent-s) + 0.75%), calc(var(--accent-l) - 10%));
+  --ac1: hsl(
+    var(--accent-h),
+    calc(var(--accent-s) + 0.75%),
+    calc(var(--accent-l) - 10%)
+  );
   --ac2: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 1%));
   --ac3: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 10%));
   --color-red: #cd4c5b;
@@ -109,12 +114,51 @@
   );
 }
 
-input[type="search"] {
-  background-color: var(--bg6);
+.theme-dark input[type="search"] {
+  background-color: var(--bg8);
 }
 
 .theme-light input[type="search"] {
-  background-color: var(--bg5);
+  background-color: var(--bg0);
+}
+
+body.is-mobile {
+  .pull-action {
+    border-radius: 100vh;
+    background-color: var(--background-secondary);
+    background-image: none;
+    border: var(--border-width) solid var(--background-modifier-border);
+    padding: 16px;
+    width: auto;
+    color: var(--text-normal);
+    font-size: var(--font-ui-small);
+    transition:
+      var(--anim-duration-fast),
+      opacity var(--anim-duration-slow),
+      transform 0s !important;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+  .pull-action.pull-action.mod-activated {
+    font-weight: calc(var(--font-weight) + var(--bold-modifier));
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: transparent;
+  }
+  .pull-down-action {
+    inset: calc(var(--safe-area-inset-top) + 8px) 8px auto;
+    max-width: 480px;
+  }
+  /* Remove halo effect on floating nav items */
+  --raised: none;
+  .mod-raised {
+    background-color: var(--bg6);
+  }
+  .metadata-content {
+    background-color: transparent;
+  }
 }
 
 body {
@@ -135,6 +179,8 @@ body {
   --tab-font-size: 0.82em;
   --code-size: 0.88em;
   --code-radius: var(--radius-s);
+  --code-border-width: 1px;
+  --code-border-color: var(--bg6);
   --line-height-normal: 1.5;
   --line-height-tight: 1.3;
   --table-line-height: 1.35;
@@ -170,8 +216,8 @@ body {
   --background-secondary: var(--bg2);
   --background-primary-alt: var(--bg3);
   --background-secondary-alt: var(--bg4);
-  --titlebar-background: var(--titlebar-background-focused);
   --titlebar-background-focused: var(--background-primary);
+  --titlebar-background: var(--titlebar-background-focused);
   --titlebar-text-color-focused: var(--tx1);
   --ribbon-background: var(--background-secondary);
   --interactive-normal: var(--bg7);
@@ -190,10 +236,12 @@ body {
   --background-modifier-form-field-highlighted: var(--bg7);
   --tab-background-active: var(--titlebar-background-focused);
   --tab-container-background: var(--titlebar-background-focused);
+  /* --tab-container-padding-start: 40px; */
   --tab-text-color-focused-active: var(--tx1);
   --tab-text-color-focused: var(--tx3);
   --tab-text-color-focused-active-current: var(--tx1);
   --tab-divider-color: var(--bg8);
+  --sidebar-tab-container-background: var(--background-secondary);
   --divider-color: var(--bg6);
   --frame-divider-color: var(--divider-color);
   --prompt-border-color: var(--divider-color);
@@ -211,7 +259,7 @@ body {
   --nav-collapse-icon-color-collapsed: var(--tx2);
   --text-blockquote: var(--tx2);
   --text-faint: var(--tx3);
-  --list-marker-color: var(--text-accent);
+  --list-marker-color: var(--text-faint);
   --list-indent: 2.2em;
   --list-indent-editing: 0.6em;
   --list-spacing: 0;
@@ -232,16 +280,29 @@ body {
   --code-important: var(--code-keyword);
   --code-keyword: var(--color-red);
   --code-property: var(--code-normal);
-  --code-string: var(--color-green);
-  --code-tag: var(--color-purple);
-  --code-value: var(--color-yellow);
+  --code-string: var(--color-yellow);
+  --code-tag: var(--code-normal);
+  --code-value: var(--color-cyan);
   /* Plugin: Notebook Navigator */
   --nn-theme-quick-actions-bg: var(--background-secondary-alt);
   --nn-theme-quick-actions-border: var(--tab-divider-color);
   --nn-theme-quick-actions-separator-color: var(--tab-divider-color);
   --nn-theme-nav-bg: var(--background-secondary);
   --nn-theme-list-bg: var(--background-secondary);
-  --nn-scroller-padding: 6px;
+  --nn-theme-divider-border-color: transparent;
+  --nn-scroller-padding: 10px;
+  --header-height: 52px;
+  --tab-max-width: var(--tab-width);
+  /* --tab-radius: var(--radius-s) !important; */
+  /* --tab-radius-active: var(--tab-radius) var(--tab-radius) 0 0; */
+  /* --tab-curve: calc(var(--tab-radius) + 4px); */
+  --tab-outline-width: 0;
+  --tab-divider-color: transparent;
+  --tab-text-align: left;
+  --tab-text-color-focused: var(--text-faint);
+  --tab-text-color-focused-active: var(--text-normal);
+  --tab-text-color-focused-active-current: unset;
+  --status-bar-background: var(--background-primary);
 }
 
 /* Remove icon and leftover padding on external links */
@@ -261,10 +322,25 @@ body {
   box-shadow: none;
 }
 
-/* Sidedock */
-.workspace-tabs .workspace-leaf {
-  background-color: var(--background-secondary);
+/* Highlighted ==text== */
+.cm-s-obsidian span.cm-formatting-highlight,
+.cm-s-obsidian span.cm-highlight {
+  padding: 0.065em 0.13em;
+  /* border-radius: var(--code-radius); */
+  border-width: 0;
 }
+
+/* Inline code */
+.cm-s-obsidian .cm-inline-code:not(.cm-formatting) {
+  padding: 0.075em, 0.225em;
+  border-radius: var(--code-radius);
+  border-width: var(--code-border-width);
+}
+
+/* Sidedock, not in 1.14 */
+/* .workspace-tabs .workspace-leaf { */
+/*   background-color: var(--background-secondary); */
+/* } */
 
 /* When left sidebar is hidden, make titlebar same as note bg */
 /* .mod-macos.is-hidden-frameless:not(.is-popout-window) */
@@ -275,13 +351,13 @@ body {
 /* } */
 
 /* Top left titlebar, overrides --titlebar-backgrounds */
-.is-hidden-frameless:not(.is-fullscreen)
+.is-hidden-frameless
   .workspace-tabs.mod-top-left-space
   .workspace-tab-header-container {
   background-color: var(--background-secondary);
 }
 
-.is-hidden-frameless:not(.is-fullscreen)
+.is-hidden-frameless
   .workspace-tabs.mod-top-right-space
   .workspace-tab-header-container {
   background-color: var(--background-secondary);
@@ -292,9 +368,23 @@ body {
   background-color: var(--background-primary) !important;
 }
 
-.mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right {
-  background-color: inherit;
+/* Right sidebar toggle button bg */
+.mod-macos.is-hidden-frameless:not(.is-popout-window, .is-mobile)
+  .mod-sidedock
+  .sidebar-toggle-button.mod-secondary {
+  background-color: var(--background-secondary);
 }
+
+/* Left sidebar icon padding and bg */
+.mod-primary-split .workspace-tab-header-container .workspace-tab-header,
+.mod-secondary-split .workspace-tab-header-container .workspace-tab-header {
+  margin: 5px 0;
+}
+
+/* Not needed in 1.14 */
+/* .mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right { */
+/*   background-color: inherit; */
+/* } */
 
 /* Disable divider below titlebar */
 /* .workspace-tab-header-container { */
@@ -315,7 +405,7 @@ body {
 
 /* Set file line width actually here, ~80 chars (≈ 58ch) */
 .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
-  --file-line-width: 36em;
+  --file-line-width: 35em;
 }
 
 /* Make code blocks extend to right padding edge */
@@ -347,66 +437,196 @@ body {
 }
 
 /* Remove curves from tabs, add hover state radius */
-.mod-root {
+/* .mod-root { */
+/*   --tab-curve: 0; */
+/*   --tab-radius: var(--radius-s); */
+/*   --tab-radius-active: 0; */
+/* Remove ugly tab hover effect on inactive tabs: */
+/*   --tab-outline-width: 0; */
+/* --tab-divider-color: transparent; */
+/* --tab-outline-color: transparent; */
+/* } */
+
+.workspace .mod-root .workspace-tab-header-inner::after {
+  width: 0;
+}
+
+body:not(.is-mobile) {
+  --tab-action-width: 32px;
+}
+body.is-mobile {
+  --header-height: 44px !important;
+  --tab-action-width: 44px;
+  --tab-text-color-active: var(--text-normal);
+  --tab-text-color-focused: var(--text-normal);
+}
+body.is-tablet {
+  --header-height: 52px !important;
+}
+
+/* All panels */
+
+body:not(.is-mobile) .workspace-tab-header-container {
+  height: var(--header-height);
+  transition: none;
+  background-color: transparent;
+  border: none;
+  padding-left: 7px;
+}
+
+.workspace-tab-header-inner-icon {
+  color: inherit !important;
+}
+
+.sidebar-toggle-button {
+  height: var(--header-height);
+  padding-bottom: 8px;
+  align-items: center;
+
+  .clickable-icon {
+    min-width: var(--tab-action-width);
+    padding: 6px;
+  }
+}
+.workspace-tab-header-new-tab,
+.workspace-tab-header-tab-list {
+  padding: 4px 0;
+  margin: 2px;
+
+  .clickable-icon {
+    min-width: var(--tab-action-width);
+    padding: 6px;
+  }
+}
+
+/* Editor panel */
+body:not(.is-mobile) .workspace .mod-root {
+  .workspace-tab-header-container-inner {
+    padding: 10px 3px 0;
+    /* padding: 8px var(--tab-curve) 0; */
+    margin: 0 -4px 0 0;
+    gap: 8px;
+  }
+
+  .workspace-tab-header {
+    padding: 0;
+  }
+
+  .workspace-tab-header-inner {
+    padding-inline-start: 12px;
+    padding-inline-end: 8px;
+    margin-bottom: 8px;
+    height: auto;
+  }
+  .workspace-tab-header-inner-title {
+    line-height: normal;
+    text-align: left;
+  }
+}
+
+.workspace-tab-header-container {
+  /* border-bottom: var(--divider-width) solid var(--divider-color) !important; */
+  padding-left: 7px;
+  background-color: transparent;
+  border-bottom: none;
+}
+
+body:not(.is-mobile) {
+  --tab-background-active: var(--background-modifier-hover);
+  --tab-radius-active: var(--tab-radius);
   --tab-curve: 0;
-  --tab-radius: var(--radius-s);
-  --tab-radius-active: 0;
+
+  .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
+    .workspace-tab-header-container-inner {
+      padding-bottom: 10px;
+      gap: 4px;
+      margin: 0;
+    }
+    .workspace-tab-header {
+      max-height: 48px;
+      margin: auto 0;
+      height: 100%;
+      padding: 0;
+      box-shadow: none;
+    }
+    .workspace-tab-header-inner {
+      padding-inline-start: 12px;
+      padding-inline-end: 8px;
+      margin-bottom: 0;
+    }
+  }
+}
+body:is-tablet {
+  --header-height: 60px !important;
+
+  .mod-root .workspace-tabs:not(.mod-stacked) {
+    .workspace-tab-header-container-inner {
+      padding-block: 0 !important;
+    }
+    .workspace-tab-header {
+      margin-block: 8px;
+    }
+  }
 }
 
-/* Left padding of leftmost tab */
-.mod-root .workspace-tab-header-container {
-  padding-left: 0;
-  padding-right: 0;
+.status-bar {
+  border: none;
 }
 
-/* t and b center the tab container, also affects hover rect,
-*  r moves the new tab + closer,
-*  l makes leftmost tab left padding smaller */
-.mod-root .workspace-tab-header-container-inner {
-  margin: 0 -8px 0 -15px;
-}
+/* Left padding of leftmost tab, not needed in 1.14 */
+/* .mod-root .workspace-tab-header-container { */
+/*   padding-left: 0; */
+/*   padding-right: 0; */
+/* } */
+
+/* t and b center the tab container, also affects hover rect, */
+/* r moves the new tab + closer, */
+/* l makes leftmost tab left padding smaller */
+/* .mod-root .workspace-tab-header-container-inner { */
+/*   margin: 0 -8px 0 -15px; */
+/* } */
 
 /* Tab text inside the hover rect */
-.mod-root .workspace-tab-header-inner {
-  padding: 0 2px 0 6px;
-}
+/* .mod-root .workspace-tab-header-inner { */
+/*   padding: 0 2px 0 6px; */
+/* } */
 
 /* Left padding for new tab + */
-.workspace-tab-header-new-tab {
-  padding: 0;
-}
+/* .workspace-tab-header-new-tab { */
+/*   padding: 0; */
+/* } */
 
 /* Remove tab container */
-.workspace-tab-header-container .workspace-tab-header.is-active {
-  box-shadow: none;
-}
+/* .workspace-tab-header-container .workspace-tab-header.is-active { */
+/*   box-shadow: none; */
+/* } */
 
 /* Small divider to the right of every tab */
-.mod-root .workspace-tab-header {
-  border-right: 1.5px solid var(--tab-divider-color);
-  height: 75%;
-  padding: 0;
+/* .mod-root .workspace-tab-header { */
+/*   border-right: 1.5px solid var(--tab-divider-color); */
+/*   height: 75%; */
+/*   padding: 0; */
 
-  /* Adjust text and close button slightly up: */
-  margin: 0 0 1px 0;
-  align-self: center;
-}
+/* Adjust text and close button slightly up: */
+/*   margin: 0 0 1px 0; */
+/*   align-self: center; */
+/* } */
 
 /* tab text and x container, affects hover */
-.workspace .mod-root .workspace-tab-header {
-  padding: 1px 5px;
-}
+/* .workspace .mod-root .workspace-tab-header { */
+/*   padding: 1px 5px; */
+/* } */
 
 /* Hide tab divider that appears when there's >= 2 tabs */
-.workspace .mod-root .workspace-tab-header-inner::after {
-  display: none;
-}
+/* .workspace .mod-root .workspace-tab-header-inner::after { */
+/*   display: none; */
+/* } */
 
 /* Tab title, could be center, but hover state is weird */
-.workspace-tab-header-inner-title {
-  text-align: left;
-  /* padding: 2px 2px; */
-}
+/* .workspace-tab-header-inner-title { */
+/*   text-align: left; */
+/*   padding: 2px 2px; */
+/* } */
 
 .workspace-tab-header-title:hover {
   background-color: transparent;
@@ -428,25 +648,25 @@ body {
   transition: opacity 0.125s ease-in-out;
 }
 
-/* /* Align column drag handle, it had ±1px adjustment */ */
+/* Align column drag handle, it had ±1px adjustment */
 /* .markdown-source-view.mod-cm6 */
 /*   .cm-table-widget.is-dragging */
 /*   .table-col-drag-handle:active { */
 /*   left: 0 !important; */
 /* } */
-/**/
+
 /* :root table { */
 /*   border-collapse: separate; */
 /*   border-spacing: 0; */
 /* } */
-/**/
-/* /* Active table cell bg */ */
+
+/* Active table cell bg */
 /* .table-cell-wrapper:active, */
 /* .table-cell-wrapper:focus, */
 /* .table-cell-wrapper:focus-within { */
 /*   background-color: var(--bg5); */
 /* } */
-/**/
+
 /* .cm-html-embed td, */
 /* .markdown-rendered td, */
 /* .cm-html-embed th, */
@@ -454,14 +674,14 @@ body {
 /* .markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper { */
 /*   padding: 10px; */
 /* } */
-/**/
+
 /* .markdown-preview-view, */
 /* .cm-sizer { */
 /*   table { */
 /*     position: relative; */
 /*     border-radius: var(--radius-s); */
 /*   } */
-/**/
+
 /*   table::before { */
 /*     position: absolute; */
 /*     z-index: 1; */
@@ -473,42 +693,42 @@ body {
 /*     pointer-events: none; */
 /*     content: ""; */
 /*   } */
-/**/
+
 /*   thead, */
 /*   tbody { */
 /*     background-color: var(--table-background); */
 /*   } */
-/**/
+
 /*   tr td, */
 /*   tr th { */
 /*     border-right: none; */
 /*     border-bottom: none; */
 /*   } */
-/**/
+
 /*   thead tr th { */
 /*     border-top: none; */
 /*   } */
-/**/
+
 /*   th:first-child, */
 /*   th:first-child .table-cell-wrapper { */
 /*     border-top-left-radius: var(--radius-s); */
 /*   } */
-/**/
+
 /*   th:last-child, */
 /*   th:last-child .table-cell-wrapper { */
 /*     border-top-right-radius: var(--radius-s); */
 /*   } */
-/**/
+
 /*   tr:last-child td:first-child, */
 /*   tr:last-child td:first-child .table-cell-wrapper { */
 /*     border-bottom-left-radius: var(--radius-s); */
 /*   } */
-/**/
+
 /*   tr:last-child td:last-child, */
 /*   tr:last-child td:last-child .table-cell-wrapper { */
 /*     border-bottom-right-radius: var(--radius-s); */
 /*   } */
-/**/
+
 /*   .cm-table-widget[dir="rtl"], */
 /*   .el-table[dir="rtl"], */
 /*   div[dir="rtl"] { */
@@ -517,36 +737,36 @@ body {
 /*       border-top-right-radius: var(--radius-s); */
 /*       border-top-left-radius: 0; */
 /*     } */
-/**/
+
 /*     th:last-child, */
 /*     th:last-child .table-cell-wrapper { */
 /*       border-top-right-radius: 0; */
 /*       border-top-left-radius: var(--radius-s); */
 /*     } */
-/**/
+
 /*     tr th:first-child, */
 /*     tr td:first-child { */
 /*       border-left: var(--table-border-width) solid var(--table-border-color); */
 /*     } */
-/**/
+
 /*     tr th:last-child, */
 /*     tr td:last-child { */
 /*       border-left-width: 0 !important; */
 /*     } */
-/**/
+
 /*     tr:last-child td:first-child, */
 /*     tr:last-child td:first-child .table-cell-wrapper { */
 /*       border-bottom-right-radius: var(--radius-s); */
 /*       border-bottom-left-radius: 0; */
 /*     } */
-/**/
+
 /*     tr:last-child td:last-child, */
 /*     tr:last-child td:last-child .table-cell-wrapper { */
 /*       border-bottom-right-radius: 0; */
 /*       border-bottom-left-radius: var(--radius-s); */
 /*     } */
 /*   } */
-/**/
+
 /*   .table-col-btn, */
 /*   .table-row-btn { */
 /*     border: none !important; */
@@ -591,8 +811,13 @@ body {
 }
 
 /* Apply the gap to the rendered marker OR its editable token, never both. */
-.markdown-source-view.mod-cm6 :is(.cm-formatting-list-ul, .cm-formatting-list-ol) > :is(.list-bullet, .list-number),
-.markdown-source-view.mod-cm6 :is(.cm-formatting-list-ul, .cm-formatting-list-ol):not(:has(> :is(.list-bullet, .list-number))) {
+.markdown-source-view.mod-cm6
+  :is(.cm-formatting-list-ul, .cm-formatting-list-ol)
+  > :is(.list-bullet, .list-number),
+.markdown-source-view.mod-cm6
+  :is(.cm-formatting-list-ul, .cm-formatting-list-ol):not(
+    :has(> :is(.list-bullet, .list-number))
+  ) {
   padding-inline-end: var(--list-marker-gap);
 }
 
@@ -625,53 +850,125 @@ body {
   --bear-list-depth: 1;
   --bear-bullet-phase: mod(var(--bear-list-depth) - 1, 4);
 }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-2 { --bear-list-depth: 2; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-3 { --bear-list-depth: 3; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-4 { --bear-list-depth: 4; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-5 { --bear-list-depth: 5; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-6 { --bear-list-depth: 6; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-7 { --bear-list-depth: 7; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-8 { --bear-list-depth: 8; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-9 { --bear-list-depth: 9; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-10 { --bear-list-depth: 10; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-11 { --bear-list-depth: 11; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-12 { --bear-list-depth: 12; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-13 { --bear-list-depth: 13; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-14 { --bear-list-depth: 14; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-15 { --bear-list-depth: 15; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-16 { --bear-list-depth: 16; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-17 { --bear-list-depth: 17; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-18 { --bear-list-depth: 18; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-19 { --bear-list-depth: 19; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-20 { --bear-list-depth: 20; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-21 { --bear-list-depth: 21; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-22 { --bear-list-depth: 22; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-23 { --bear-list-depth: 23; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-24 { --bear-list-depth: 24; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-25 { --bear-list-depth: 25; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-26 { --bear-list-depth: 26; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-27 { --bear-list-depth: 27; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-28 { --bear-list-depth: 28; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-29 { --bear-list-depth: 29; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-30 { --bear-list-depth: 30; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-31 { --bear-list-depth: 31; }
-.markdown-source-view.mod-cm6 .HyperMD-list-line-32 { --bear-list-depth: 32; }
+.markdown-source-view.mod-cm6 .HyperMD-list-line-2 {
+  --bear-list-depth: 2;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-3 {
+  --bear-list-depth: 3;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-4 {
+  --bear-list-depth: 4;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-5 {
+  --bear-list-depth: 5;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-6 {
+  --bear-list-depth: 6;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-7 {
+  --bear-list-depth: 7;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-8 {
+  --bear-list-depth: 8;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-9 {
+  --bear-list-depth: 9;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-10 {
+  --bear-list-depth: 10;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-11 {
+  --bear-list-depth: 11;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-12 {
+  --bear-list-depth: 12;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-13 {
+  --bear-list-depth: 13;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-14 {
+  --bear-list-depth: 14;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-15 {
+  --bear-list-depth: 15;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-16 {
+  --bear-list-depth: 16;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-17 {
+  --bear-list-depth: 17;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-18 {
+  --bear-list-depth: 18;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-19 {
+  --bear-list-depth: 19;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-20 {
+  --bear-list-depth: 20;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-21 {
+  --bear-list-depth: 21;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-22 {
+  --bear-list-depth: 22;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-23 {
+  --bear-list-depth: 23;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-24 {
+  --bear-list-depth: 24;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-25 {
+  --bear-list-depth: 25;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-26 {
+  --bear-list-depth: 26;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-27 {
+  --bear-list-depth: 27;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-28 {
+  --bear-list-depth: 28;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-29 {
+  --bear-list-depth: 29;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-30 {
+  --bear-list-depth: 30;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-31 {
+  --bear-list-depth: 31;
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-32 {
+  --bear-list-depth: 32;
+}
 
 .markdown-source-view.mod-cm6.is-live-preview
-  .HyperMD-list-line:not(.HyperMD-list-line-nobullet) > .cm-hmd-list-indent {
+  .HyperMD-list-line:not(.HyperMD-list-line-nobullet)
+  > .cm-hmd-list-indent {
   width: calc((var(--bear-list-depth) - 1) * var(--list-indent));
 }
 
-:is(.markdown-source-view.mod-cm6, .markdown-preview-view.markdown-rendered) .list-bullet::after {
+:is(.markdown-source-view.mod-cm6, .markdown-preview-view.markdown-rendered)
+  .list-bullet::after {
   --bear-bullet-hollow: mod(var(--bear-bullet-phase, 0), 2);
-  --bear-bullet-diamond: round(down, calc(var(--bear-bullet-phase, 0) / 2), 1);
+  --bear-bullet-diamond: round(
+    down,
+    calc(var(--bear-bullet-phase, 0) / 2),
+    1
+  );
 
   box-sizing: border-box;
   width: calc(0.4em - 0.04em * var(--bear-bullet-diamond));
   height: calc(0.4em - 0.04em * var(--bear-bullet-diamond));
   border: 1px solid var(--list-marker-color);
   border-radius: calc(50% * (1 - var(--bear-bullet-diamond)));
-  background-color: color-mix(in srgb, var(--list-marker-color) calc(100% * (1 - var(--bear-bullet-hollow))), transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--list-marker-color) calc(100% * (1 - var(--bear-bullet-hollow))),
+    transparent
+  );
   transform: rotate(calc(45deg * var(--bear-bullet-diamond)));
 }
 
@@ -679,12 +976,17 @@ body {
   text-indent: 30px !important;
 }
 
-.table-col-btn, .table-row-btn {
+.table-col-btn,
+.table-row-btn {
   border: none !important;
 }
 
- /* Keep explicit Markdown column alignment and the native table editing controls. */
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table {
+/* Keep explicit Markdown column alignment and the native table editing controls. */
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table {
   /* --table-border-color: var(--bear-table-border); */
   --table-border-width: 0px;
   --table-header-border-width: 0px;
@@ -708,20 +1010,41 @@ body {
   border-radius: 4px;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table :is(th, td) {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  :is(th, td) {
   border-inline-end: 1px solid var(--table-border);
   line-height: var(--line-height);
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table :is(th, td):last-child {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  :is(th, td):last-child {
   border-inline-end-width: 0;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table :is(th, td):not([align]) {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  :is(th, td):not([align]) {
   text-align: left;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table tbody tr:nth-child(even) {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  tbody
+  tr:nth-child(even) {
   background-color: var(--table-stripe);
 }
 
@@ -730,19 +1053,47 @@ body {
   padding: 0.4em 0.8em;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table thead tr:first-child th:first-child {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  thead
+  tr:first-child
+  th:first-child {
   border-start-start-radius: 3px;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table thead tr:first-child th:last-child {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  thead
+  tr:first-child
+  th:last-child {
   border-start-end-radius: 3px;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table tbody tr:last-child td:first-child {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  tbody
+  tr:last-child
+  td:first-child {
   border-end-start-radius: 3px;
 }
 
-:is(.markdown-source-view.mod-cm6 .cm-table-widget, .markdown-preview-view.markdown-rendered) table tbody tr:last-child td:last-child {
+:is(
+    .markdown-source-view.mod-cm6 .cm-table-widget,
+    .markdown-preview-view.markdown-rendered
+  )
+  table
+  tbody
+  tr:last-child
+  td:last-child {
   border-end-end-radius: 3px;
 }
 
